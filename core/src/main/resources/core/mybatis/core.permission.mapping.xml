@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scot.permissions.core.dao.ICorePermissionDao" >
+  <resultMap id="BaseResultMap" type="com.scot.permissions.core.entity.CorePermission" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="isactive" property="isactive" jdbcType="TINYINT" />
+    <result column="function_flag" property="functionFlag" jdbcType="VARCHAR" />
+    <result column="function_code" property="functionCode" jdbcType="VARCHAR" />
+    <result column="parent_function_code" property="parentFunctionCode" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="is_child" property="isChild" jdbcType="TINYINT" />
+    <result column="category" property="category" jdbcType="TINYINT" />
+    <result column="tier" property="tier" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, creator, update_user, inserttime, updatetime, isactive, function_flag, function_code,
+    parent_function_code, url, type, is_child, category, tier
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scot.permissions.core.entity.CorePermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from core_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from core_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from core_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scot.permissions.core.entity.CorePermissionExample" >
+    delete from core_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scot.permissions.core.entity.CorePermission" >
+    insert into core_permission (id, creator, update_user,
+    inserttime, updatetime, isactive,
+    function_flag, function_code, parent_function_code,
+    url, type, is_child,
+    category, tier)
+    values (#{id,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT},
+    #{inserttime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isactive,jdbcType=TINYINT},
+    #{functionFlag,jdbcType=VARCHAR}, #{functionCode,jdbcType=VARCHAR}, #{parentFunctionCode,jdbcType=VARCHAR},
+    #{url,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{isChild,jdbcType=TINYINT},
+    #{category,jdbcType=TINYINT}, #{tier,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scot.permissions.core.entity.CorePermission" >
+    insert into core_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="isactive != null" >
+        isactive,
+      </if>
+      <if test="functionFlag != null" >
+        function_flag,
+      </if>
+      <if test="functionCode != null" >
+        function_code,
+      </if>
+      <if test="parentFunctionCode != null" >
+        parent_function_code,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isChild != null" >
+        is_child,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="tier != null" >
+        tier,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="functionFlag != null" >
+        #{functionFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCode != null" >
+        #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentFunctionCode != null" >
+        #{parentFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isChild != null" >
+        #{isChild,jdbcType=TINYINT},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=TINYINT},
+      </if>
+      <if test="tier != null" >
+        #{tier,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scot.permissions.core.entity.CorePermissionExample" resultType="java.lang.Integer" >
+    select count(*) from core_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update core_permission
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isactive != null" >
+        isactive = #{record.isactive,jdbcType=TINYINT},
+      </if>
+      <if test="record.functionFlag != null" >
+        function_flag = #{record.functionFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionCode != null" >
+        function_code = #{record.functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentFunctionCode != null" >
+        parent_function_code = #{record.parentFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.isChild != null" >
+        is_child = #{record.isChild,jdbcType=TINYINT},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=TINYINT},
+      </if>
+      <if test="record.tier != null" >
+        tier = #{record.tier,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update core_permission
+    set id = #{record.id,jdbcType=BIGINT},
+    creator = #{record.creator,jdbcType=BIGINT},
+    update_user = #{record.updateUser,jdbcType=BIGINT},
+    inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+    updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+    isactive = #{record.isactive,jdbcType=TINYINT},
+    function_flag = #{record.functionFlag,jdbcType=VARCHAR},
+    function_code = #{record.functionCode,jdbcType=VARCHAR},
+    parent_function_code = #{record.parentFunctionCode,jdbcType=VARCHAR},
+    url = #{record.url,jdbcType=VARCHAR},
+    type = #{record.type,jdbcType=TINYINT},
+    is_child = #{record.isChild,jdbcType=TINYINT},
+    category = #{record.category,jdbcType=TINYINT},
+    tier = #{record.tier,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scot.permissions.core.entity.CorePermission" >
+    update core_permission
+    <set >
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        isactive = #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="functionFlag != null" >
+        function_flag = #{functionFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCode != null" >
+        function_code = #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentFunctionCode != null" >
+        parent_function_code = #{parentFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isChild != null" >
+        is_child = #{isChild,jdbcType=TINYINT},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=TINYINT},
+      </if>
+      <if test="tier != null" >
+        tier = #{tier,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scot.permissions.core.entity.CorePermission" >
+    update core_permission
+    set creator = #{creator,jdbcType=BIGINT},
+    update_user = #{updateUser,jdbcType=BIGINT},
+    inserttime = #{inserttime,jdbcType=TIMESTAMP},
+    updatetime = #{updatetime,jdbcType=TIMESTAMP},
+    isactive = #{isactive,jdbcType=TINYINT},
+    function_flag = #{functionFlag,jdbcType=VARCHAR},
+    function_code = #{functionCode,jdbcType=VARCHAR},
+    parent_function_code = #{parentFunctionCode,jdbcType=VARCHAR},
+    url = #{url,jdbcType=VARCHAR},
+    type = #{type,jdbcType=TINYINT},
+    is_child = #{isChild,jdbcType=TINYINT},
+    category = #{category,jdbcType=TINYINT},
+    tier = #{tier,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--扩展-->
+
+  <!--获取全部左侧树-->
+</mapper>
