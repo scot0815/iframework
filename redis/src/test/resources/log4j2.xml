@@ -27,7 +27,6 @@
             <appender-ref ref="RollingFile"/>
             <appender-ref ref="Console"/>
         </root>
-        <logger name="com.scot.permissions.core.*.dao" level="DEBUG"/>
     </loggers>
 
 </configuration>

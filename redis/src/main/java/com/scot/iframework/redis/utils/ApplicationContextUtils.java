@@ -1,4 +1,4 @@
-package com.scot.permissions.redis.utils;
+package com.scot.iframework.redis.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;

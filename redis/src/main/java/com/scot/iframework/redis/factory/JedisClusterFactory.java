@@ -1,4 +1,4 @@
-package com.scot.permissions.redis.factory;
+package com.scot.iframework.redis.factory;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;

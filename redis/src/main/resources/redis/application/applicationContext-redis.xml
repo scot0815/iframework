@@ -7,9 +7,9 @@
     <!-- Annotation Initilization -->
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.scot.permissions.redis" />
+    <context:component-scan base-package="com.scot.iframework.redis" />
 
-    <bean id="jedisClusterFactory" class="com.scot.permissions.redis.factory.JedisClusterFactory" init-method="afterPropertiesSet">
+    <bean id="jedisClusterFactory" class="com.scot.iframework.redis.factory.JedisClusterFactory" init-method="afterPropertiesSet">
         <property name="addressConfig" value="classpath:${redis-config}"/>
         <property name="addressKeyPrefix" value="${redis-keyPrefix}" />
         <property name="timeout" value="${redis-timeout}" />

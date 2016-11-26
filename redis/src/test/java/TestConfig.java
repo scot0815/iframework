@@ -1,5 +1,4 @@
-import com.scot.permissions.redis.factory.JedisClusterFactory;
-import com.scot.permissions.redis.utils.ApplicationContextUtils;
+import com.scot.iframework.redis.factory.JedisClusterFactory;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,8 +7,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.JedisCluster;
-
-import javax.annotation.Resource;
 
 /**
  * 测试redis集群环境
