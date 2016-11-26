@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="utf-8" pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${sys:catalina.home}/logs/pay.log"
+                     filePattern="${sys:catalina.home}/logs/$${date:yyyy-MM}/purchase-%d{MM-dd-yyyy}-%i.log">
+            <PatternLayout
+                    pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!--<logger name="com.rl.deposit" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>-->
+        <!--<root level="warn">-->
+            <!--<appender-ref ref="Console"/>-->
+        <!--</root>-->
+        <root level="debug">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </root>
+        <logger name="com.scot.permissions.core.*.dao" level="DEBUG"/>
+    </loggers>
+
+</configuration>
+
