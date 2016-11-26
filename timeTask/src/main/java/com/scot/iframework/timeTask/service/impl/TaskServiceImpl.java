@@ -1,8 +1,8 @@
-package com.scot.permissions.timeTask.service.impl;
+package com.scot.iframework.timeTask.service.impl;
 
-import com.scot.permissions.timeTask.po.ScheduleTask;
-import com.scot.permissions.timeTask.proxy.ProxyJob;
-import com.scot.permissions.timeTask.service.ITaskService;
+import com.scot.iframework.timeTask.po.ScheduleTask;
+import com.scot.iframework.timeTask.proxy.ProxyJob;
+import com.scot.iframework.timeTask.service.ITaskService;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;

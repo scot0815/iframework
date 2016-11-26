@@ -1,8 +1,7 @@
 package com.scot.timeTask;
 
-import com.alibaba.fastjson.JSON;
-import com.scot.permissions.timeTask.po.ScheduleTask;
-import com.scot.permissions.timeTask.service.ITaskService;
+import com.scot.iframework.timeTask.po.ScheduleTask;
+import com.scot.iframework.timeTask.service.ITaskService;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +23,10 @@ public class TimeTaskTest {
     private ITaskService taskService;
 
     @Test
+    @Ignore
     public void test() {
         try {
-            ScheduleTask task = taskService.addScheduleTask("job1", "com.scot.permissions.timeTask.task.Task1", "exec", "0/5 * * * * ?");
+            ScheduleTask task = taskService.addScheduleTask("job1", "Task1", "exec", "0/5 * * * * ?");
            //System.out.println(JSON.toJSON(task));
             System.out.println(taskService.getAllTask());
         } catch (Exception e) {

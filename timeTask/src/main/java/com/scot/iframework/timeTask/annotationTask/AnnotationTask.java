@@ -1,4 +1,4 @@
-package com.scot.permissions.timeTask.annotationTask;
+package com.scot.iframework.timeTask.annotationTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

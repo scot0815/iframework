@@ -1,4 +1,4 @@
-package com.scot.permissions.timeTask.po;
+package com.scot.iframework.timeTask.po;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
 

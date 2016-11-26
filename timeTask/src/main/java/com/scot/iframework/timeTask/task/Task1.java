@@ -1,4 +1,4 @@
-package com.scot.permissions.timeTask.task;
+package com.scot.iframework.timeTask.task;
 
 /**
  * 测试task1

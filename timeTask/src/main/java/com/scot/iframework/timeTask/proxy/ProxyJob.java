@@ -1,12 +1,11 @@
-package com.scot.permissions.timeTask.proxy;
+package com.scot.iframework.timeTask.proxy;
 
-import com.scot.permissions.timeTask.po.ScheduleTask;
+import com.scot.iframework.timeTask.po.ScheduleTask;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
