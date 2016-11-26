@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scot.iframework.permission.dao.ICoreRolePermissionDao" >
+  <resultMap id="BaseResultMap" type="com.scot.iframework.permission.entity.CoreRolePermission" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="isactive" property="isactive" jdbcType="TINYINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="permission_id" property="permissionId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, creator, update_user, inserttime, updatetime, isactive, role_id, permission_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scot.iframework.permission.entity.CoreRolePermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from core_role_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from core_role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from core_role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scot.iframework.permission.entity.CoreRolePermissionExample" >
+    delete from core_role_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scot.iframework.permission.entity.CoreRolePermission" >
+    insert into core_role_permission (id, creator, update_user, 
+      inserttime, updatetime, isactive, 
+      role_id, permission_id)
+    values (#{id,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, 
+      #{inserttime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{isactive,jdbcType=TINYINT}, 
+      #{roleId,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scot.iframework.permission.entity.CoreRolePermission" >
+    insert into core_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="isactive != null" >
+        isactive,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scot.iframework.permission.entity.CoreRolePermissionExample" resultType="java.lang.Integer" >
+    select count(*) from core_role_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update core_role_permission
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isactive != null" >
+        isactive = #{record.isactive,jdbcType=TINYINT},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.permissionId != null" >
+        permission_id = #{record.permissionId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update core_role_permission
+    set id = #{record.id,jdbcType=BIGINT},
+      creator = #{record.creator,jdbcType=BIGINT},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      isactive = #{record.isactive,jdbcType=TINYINT},
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      permission_id = #{record.permissionId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scot.iframework.permission.entity.CoreRolePermission" >
+    update core_role_permission
+    <set >
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        isactive = #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionId != null" >
+        permission_id = #{permissionId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scot.iframework.permission.entity.CoreRolePermission" >
+    update core_role_permission
+    set creator = #{creator,jdbcType=BIGINT},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      isactive = #{isactive,jdbcType=TINYINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      permission_id = #{permissionId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--扩展-->
+
+  <!--根据权限id、角色id获取用户权限关系数据-->
+  <select id="selectByRoleIdAndPermissionId" resultMap="BaseResultMap" parameterType="map" >
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM core_role_permission
+    WHERE
+      role_id = #{roleId,jdbcType=BIGINT}
+    AND
+      permission_id = #{permissionId,jdbcType=BIGINT}
+    AND
+      isactive = 1
+  </select>
+
+  <!-- 获取roleId包含permissionIds中权限的数量 -->
+  <select id="selectCountIsContain" parameterType="java.util.Map" resultType="int">
+    SELECT
+      count(id)
+    FROM
+      core_role_permission
+    WHERE permission_id in
+      <foreach item="permissionId" index="index" collection="permissionIds" open="(" separator="," close=")">
+        #{permissionId,jdbcType=BIGINT}
+      </foreach>
+    AND
+      role_id = #{roleId,jdbcType=BIGINT}
+    AND
+      isactive = 1
+  </select>
+
+  <!--根据roleId删除PermissionIds中的所有权限-->
+  <delete id="deleteByRoleIdAndPermissionIds" parameterType="java.util.Map" >
+    DELETE from core_role_permission
+    where permission_id in
+      <foreach item="permissionId" index="index" collection="permissionIds" open="(" separator="," close=")">
+        #{permissionId,jdbcType=BIGINT}
+      </foreach>
+    AND
+      role_id = #{roleId,jdbcType=BIGINT}
+    AND
+      isactive = 1
+  </delete>
+
+  <!--批量插入-->
+  <insert id="insertList" parameterType="ArrayList">
+    INSERT INTO
+      core_role_permission (id, creator, update_user,
+      inserttime, updatetime, isactive,
+      role_id, permission_id)
+    VALUES
+      <foreach collection="list" item="obj" index="index" separator="," >
+        (#{obj.id,jdbcType=BIGINT}, #{obj.creator,jdbcType=BIGINT}, #{obj.updateUser,jdbcType=BIGINT},
+        #{obj.inserttime,jdbcType=TIMESTAMP}, #{obj.updatetime,jdbcType=TIMESTAMP}, #{obj.isactive,jdbcType=TINYINT},
+        #{obj.roleId,jdbcType=BIGINT}, #{obj.permissionId,jdbcType=BIGINT})
+      </foreach>
+  </insert>
+
+
+  <!-- 获取用户所有角色权限	-->
+  <select id="selectUserRolesPermissions" resultType="com.scot.iframework.permission.entity.CorePermission"
+          parameterType="Long">
+    SELECT
+      p.id AS id,
+      p.creator AS creator,
+      p.update_user AS updateUser,
+      p.inserttime AS inserttime,
+      p.updatetime AS updatetime,
+      p.isactive AS isactive,
+      p.function_flag AS functionFlag,
+      p.function_code AS functionCode,
+      p.parent_function_code AS parentFunctionCode,
+      p.url AS url,
+      p.type AS type,
+      p.is_child AS isChild,
+      p.category AS category,
+      p.tier AS tier
+    FROM
+      core_user_role ur,
+      core_role r,
+      core_role_permission rp,
+      core_permission p
+    WHERE
+      ur.core_user_id = #{coreUserId,jdbcType=BIGINT}
+    AND
+      ur.role_id = r.id
+    AND
+      r.id = rp.role_id
+    AND
+      rp.permission_id = p.id
+    AND
+      ur.isactive = 1
+    AND
+      r.isactive = 1
+    AND
+      rp.isactive = 1
+    AND
+      p.isactive = 1
+    ORDER BY
+      p.function_code
+  </select>
+
+  <!--获取角色的所有权限-->
+  <select id="selectRolePermissions" parameterType="Long" resultType="com.scot.iframework.permission.entity.CorePermission">
+    SELECT
+      p.id AS id,
+      p.creator AS creator,
+      p.update_user AS updateUser,
+      p.inserttime AS inserttime,
+      p.updatetime AS updatetime,
+      p.isactive AS isactive,
+      p.function_flag AS functionFlag,
+      p.function_code AS functionCode,
+      p.parent_function_code AS parentFunctionCode,
+      p.url AS url,
+      p.type AS type,
+      p.is_child AS isChild,
+      p.category AS category,
+      p.tier AS tier
+    FROM
+      core_role_permission rp,
+      core_permission p
+    WHERE
+      rp.role_id = #{roleId,jdbcType=BIGINT}
+    AND
+      rp.permission_id = p.id
+    AND
+      rp.isactive = 1
+    AND
+      p.isactive = 1
+    ORDER BY
+      p.function_code
+  </select>
+</mapper>
