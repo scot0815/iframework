@@ -67,15 +67,15 @@ public class ScheduleTask {
     /**
      * 执行次数.
      */
-    private int execute;
+    private int execute = 0;
     /**
      * 最后执行时间.
      */
-    private Date lastTime;
+    private Long lastTime;
     /**
      * 最后完成时间.
      */
-    private Date lastFinishTime;
+    private Long lastFinishTime;
     /**
      * 任务状态。0：禁用、1：启动、2：删除
      */
@@ -84,6 +84,20 @@ public class ScheduleTask {
      * 延时时间.
      */
     private int delay;
+
+    /**
+     * 构造函数.
+     * @param id
+     */
+    public ScheduleTask(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 无参构造函数.
+     */
+    public ScheduleTask() {
+    }
 
     public String getId() {
         return id;
@@ -181,19 +195,19 @@ public class ScheduleTask {
         this.execute = execute;
     }
 
-    public Date getLastTime() {
+    public Long getLastTime() {
         return lastTime;
     }
 
-    public void setLastTime(Date lastTime) {
+    public void setLastTime(Long lastTime) {
         this.lastTime = lastTime;
     }
 
-    public Date getLastFinishTime() {
+    public Long getLastFinishTime() {
         return lastFinishTime;
     }
 
-    public void setLastFinishTime(Date lastFinishTime) {
+    public void setLastFinishTime(Long lastFinishTime) {
         this.lastFinishTime = lastFinishTime;
     }
 

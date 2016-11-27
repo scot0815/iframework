@@ -1,4 +1,4 @@
-package com.scot.iframework.timeTask.task;
+package com.scot.iframework.timeTask.testTask;
 
 /**
  * 测试task1
@@ -8,5 +8,9 @@ public class Task1 {
 
     public void exec() {
         System.out.println("----------exec----------");
+    }
+
+    public void exec2() {
+        System.out.println("----------exec2----------");
     }
 }

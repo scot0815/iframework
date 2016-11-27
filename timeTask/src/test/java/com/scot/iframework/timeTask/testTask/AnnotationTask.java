@@ -1,4 +1,4 @@
-package com.scot.iframework.timeTask.annotationTask;
+package com.scot.iframework.timeTask.testTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,12 +12,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AnnotationTask {
 
-    @Autowired
-    private SchedulerFactoryBean schedulerFactory;
 
     @Scheduled(cron="0/5 * * * * ?")
     public void task() {
-        //System.out.println(schedulerFactory.getPhase());
         System.out.println("---------------执行Annotation task ---------------");
     }
 
