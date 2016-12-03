@@ -41,7 +41,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.scot.iframework.permission.*.dao" />
+        <property name="basePackage" value="com.scot.iframework.permission.dao" />
         <property name="sqlSessionFactoryBeanName" value="baseSqlSessionFactory" />
     </bean>
 

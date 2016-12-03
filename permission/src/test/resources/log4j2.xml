@@ -27,7 +27,7 @@
             <appender-ref ref="RollingFile"/>
             <appender-ref ref="Console"/>
         </root>
-        <logger name="com.scot.iframework.permission.*.dao" level="DEBUG"/>
+        <logger name="com.scot.iframework.permission.dao" level="DEBUG"/>
     </loggers>
 
 </configuration>

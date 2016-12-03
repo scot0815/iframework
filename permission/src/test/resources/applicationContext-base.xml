@@ -9,9 +9,8 @@
     <!-- Annotation Initilization -->
 
     <context:annotation-config/>
-    <import resource="classpath*:/applicationContext-datasource.xml" />
+    <import resource="classpath*:/core/application/applicationContext-permission.xml" />
 
-    <context:component-scan base-package="com.scot.iframework.permission" />
 
 
 
