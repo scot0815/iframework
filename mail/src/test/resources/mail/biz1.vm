@@ -1,0 +1,11 @@
+<html>
+<body>
+<h3>您好 $!{username}, 服务测试!</h3>
+
+<div>
+    业务名称：$!{bizname}<br/>
+    处理结果：$!{bizResult}<br/>
+</div>
+</body>
+
+</html>

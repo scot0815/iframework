@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="baseMailTemplate" class="com.scot.iframework.mail.VelocityMail"
+		  abstract="true">
+		<property name="from">
+			<value>${mail.default.from}</value>
+		</property>
+	</bean>
+
+	<bean id="testTemplate" parent="baseMailTemplate">
+		<property name="subject">
+			<value>${mail.test.subject}</value>
+		</property>
+		<property name="templateUrl">
+			<value>${mail.test.template}</value>
+		</property>
+	</bean>
+
+	<bean id="biz1Template" parent="baseMailTemplate">
+		<property name="subject">
+			<value>${mail.biz1.subject}</value>
+		</property>
+		<property name="templateUrl">
+			<value>${mail.biz1.template}</value>
+		</property>
+		<property name="receiveTo">
+			<list>
+				<ref bean="XX3"/>
+			</list>
+		</property>
+
+		<property name="receiveCc">
+			<list>
+				<ref bean="XX2"/>
+			</list>
+		</property>
+
+		<property name="receiveBcc">
+			<list>
+				<ref bean="XX1"/>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="XX1" class="com.scot.iframework.mail.ReceiveInfo">
+		<property name="receiveName" value="XX1"/>
+		<property name="receiveMail" value="XX1@qq.com"/>
+	</bean>
+
+	<bean id="XX2" class="com.scot.iframework.mail.ReceiveInfo">
+		<property name="receiveName" value="XX2"/>
+		<property name="receiveMail" value="XX2@qq.com"/>
+	</bean>
+
+	<bean id="XX3" class="com.scot.iframework.mail.ReceiveInfo">
+		<property name="receiveName" value="XX3"/>
+		<property name="receiveMail" value="XX3@qq.com"/>
+	</bean>
+
+</beans>
