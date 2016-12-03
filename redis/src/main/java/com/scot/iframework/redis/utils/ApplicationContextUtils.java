@@ -21,7 +21,6 @@ import java.util.Set;
 @Component("applicationContextUtils")
 public class ApplicationContextUtils implements ApplicationContextAware {
 
-
     private static ApplicationContext applicationContext;
 
     public <T> List<T> loadEntities(String basePackage, Class<T> typeToFind) {

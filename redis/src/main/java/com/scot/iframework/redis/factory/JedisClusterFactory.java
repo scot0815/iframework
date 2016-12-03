@@ -2,7 +2,6 @@ package com.scot.iframework.redis.factory;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -15,16 +14,41 @@ import java.util.regex.Pattern;
 /**
  * Created by shengke on 2016/11/1.
  */
-public class JedisClusterFactory implements FactoryBean<JedisCluster>{
+public class JedisClusterFactory implements FactoryBean<JedisCluster> {
 
+    /**
+     * redis地址配置路径.
+     */
     private Resource addressConfig;
-    private String addressKeyPrefix ;
 
+    /**
+     * 地址ip key前缀.
+     */
+    private String addressKeyPrefix;
+
+    /**
+     * redis集群操作api
+     */
     private JedisCluster jedisCluster;
+
+    /**
+     * 超时时间.
+     */
     private Integer timeout;
+
+    /**
+     * 最大连接数.
+     */
     private Integer maxRedirections;
+
+    /**
+     * 配置信息.
+     */
     private GenericObjectPoolConfig genericObjectPoolConfig;
 
+    /**
+     * IP匹配正则.
+     */
     private Pattern p = Pattern.compile("^.+[:]\\d{1,5}\\s*$");
 
     @Override
@@ -42,11 +66,15 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>{
         return true;
     }
 
+    /**
+     * 获取redis地址.
+     * @return  地址set
+     * @throws Exception    异常信息
+     */
     private Set<HostAndPort> parseHostAndPort() throws Exception {
         try {
             Properties prop = new Properties();
             prop.load(this.addressConfig.getInputStream());
-
             Set<HostAndPort> haps = new HashSet<HostAndPort>();
             for (Object key : prop.keySet()) {
 
@@ -78,7 +106,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>{
     public void afterPropertiesSet() throws Exception {
         Set<HostAndPort> haps = this.parseHostAndPort();
 
-        jedisCluster = new JedisCluster(haps, timeout, maxRedirections,genericObjectPoolConfig);
+        jedisCluster = new JedisCluster(haps, timeout, maxRedirections, genericObjectPoolConfig);
 
     }
     public void setAddressConfig(Resource addressConfig) {
